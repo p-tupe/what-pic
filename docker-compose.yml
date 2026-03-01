@@ -1,0 +1,64 @@
+services:
+
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama-data:/root/.ollama
+    healthcheck:
+      # ollama binary is always present; curl is not guaranteed in the image
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options: { max-size: 10m, max-file: "3" }
+    # ── NVIDIA GPU acceleration ─────────────────────────────────────
+    # Uncomment the block below and ensure nvidia-container-toolkit is installed.
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  # Pulls the model once into the shared volume before what-pic starts.
+  # Runs to completion and exits; skipped on subsequent starts if model exists.
+  model-pull:
+    image: ollama/ollama
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    command: pull ${OLLAMA_MODEL:-llava}
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+
+  what-pic:
+    build: .
+    ports:
+      - "${PORT:-8080}:8080"
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llava}
+      PORT: "8080"
+      MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-50}
+      RATE_LIMIT_IMAGES: ${RATE_LIMIT_IMAGES:-}
+      TRUST_PROXY: ${TRUST_PROXY:-}
+    depends_on:
+      ollama:
+        condition: service_healthy
+      model-pull:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options: { max-size: 10m, max-file: "3" }
+
+volumes:
+  ollama-data:

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <clipPath id="clip">
+      <circle cx="150" cy="150" r="145"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="150" cy="150" r="148" fill="#f0f6ff"/>
+  <circle cx="150" cy="150" r="147" fill="none" stroke="#cce0fa" stroke-width="1.5"/>
+
+  <!-- Subtle concentric guide rings -->
+  <circle cx="150" cy="138" r="68" fill="none" stroke="#d4e8fa" stroke-width="1" clip-path="url(#clip)"/>
+  <circle cx="150" cy="138" r="96" fill="none" stroke="#e3f0fb" stroke-width="1" clip-path="url(#clip)"/>
+
+  <!-- Eye shape fill -->
+  <path d="M 44 138 C 88 80, 212 80, 256 138 C 212 196, 88 196, 44 138 Z"
+        fill="rgba(0,113,227,0.06)" clip-path="url(#clip)"/>
+
+  <!-- Eye outline -->
+  <path d="M 44 138 C 88 80, 212 80, 256 138 C 212 196, 88 196, 44 138 Z"
+        fill="none" stroke="#0071e3" stroke-width="2" stroke-linejoin="round"
+        clip-path="url(#clip)"/>
+
+  <!-- Iris -->
+  <circle cx="150" cy="138" r="42" fill="rgba(0,113,227,0.07)" stroke="#0071e3" stroke-width="1.5"/>
+  <circle cx="150" cy="138" r="30" fill="none" stroke="rgba(0,113,227,0.2)" stroke-width="1"/>
+
+  <!-- Pupil -->
+  <circle cx="150" cy="138" r="18" fill="#003d82"/>
+
+  <!-- Glint (main) -->
+  <circle cx="159" cy="129" r="5" fill="rgba(255,255,255,0.75)"/>
+  <!-- Glint (secondary) -->
+  <circle cx="154" cy="128" r="2" fill="rgba(255,255,255,0.4)"/>
+
+  <!-- Horizontal centre line through eye -->
+  <line x1="52" y1="138" x2="248" y2="138"
+        stroke="#0071e3" stroke-width="0.75" opacity="0.18"
+        clip-path="url(#clip)"/>
+
+  <!-- Sparkle — top right -->
+  <g transform="translate(223,82)" opacity="0.85">
+    <line x1="0" y1="-9"  x2="0"  y2="9"  stroke="#0071e3" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="-9" y1="0"  x2="9"  y2="0"  stroke="#0071e3" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="-6" y1="-6" x2="6"  y2="6"  stroke="#0071e3" stroke-width="0.9" stroke-linecap="round"/>
+    <line x1="6"  y1="-6" x2="-6" y2="6"  stroke="#0071e3" stroke-width="0.9" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sparkle — bottom left (smaller) -->
+  <g transform="translate(78,196)" opacity="0.65">
+    <line x1="0"  y1="-6" x2="0"  y2="6"  stroke="#0071e3" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="-6" y1="0"  x2="6"  y2="0"  stroke="#0071e3" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="-4" y1="-4" x2="4"  y2="4"  stroke="#0071e3" stroke-width="0.7" stroke-linecap="round"/>
+    <line x1="4"  y1="-4" x2="-4" y2="4"  stroke="#0071e3" stroke-width="0.7" stroke-linecap="round"/>
+  </g>
+
+  <!-- Dot accents -->
+  <circle cx="84"  cy="84"  r="2.2" fill="#0071e3" opacity="0.45"/>
+  <circle cx="218" cy="194" r="1.8" fill="#0071e3" opacity="0.35"/>
+  <circle cx="68"  cy="160" r="1.4" fill="#0071e3" opacity="0.28"/>
+  <circle cx="234" cy="118" r="1.4" fill="#0071e3" opacity="0.28"/>
+
+  <!-- Wordmark -->
+  <text x="150" y="232"
+        font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, sans-serif"
+        font-size="30" font-weight="700" text-anchor="middle" letter-spacing="-0.5"
+        fill="#1d1d1f">what-pic</text>
+
+  <!-- Tagline -->
+  <text x="150" y="255"
+        font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Helvetica, sans-serif"
+        font-size="10" text-anchor="middle" letter-spacing="2.5"
+        fill="#86868b">AI VISION ANALYSIS</text>
+</svg>
